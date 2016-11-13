@@ -1,0 +1,224 @@
+# i = 0
+# page = 22
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+0   0    0
+0   0    0
+0   0    0
+###-------------------------------------
+page not found in TBL search PT 
+copy page 22 from vitual to physical memory in 0
+update pt, row 22, validation is true
+update pt, row 22, frame is 0
+modify bits is: 2
+update tlb: put in (22,0)
+data is  modified.
+-------------------------------------
+# i = 1
+# page = 44
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    1
+0   0    0
+0   0    0
+###-------------------------------------
+page not found in TBL search PT 
+copy page 44 from vitual to physical memory in 1
+update pt, row 44, validation is true
+update pt, row 44, frame is 1
+modify bits is: 2
+update tlb: put in (44,1)
+data is  modified.
+-------------------------------------
+# i = 2
+# page = 44
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    1
+44   1    2
+0   0    0
+###-------------------------------------
+page found in TBL is in frame 1
+modify bits is: 3
+-------------------------------------
+# i = 3
+# page = 36
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    1
+44   1    2
+0   0    0
+###-------------------------------------
+page not found in TBL search PT 
+copy page 36 from vitual to physical memory in 2
+update pt, row 36, validation is true
+update pt, row 36, frame is 2
+modify bits is: 2
+update tlb: put in (36,2)
+data is  modified.
+-------------------------------------
+# i = 4
+# page = 25
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    1
+44   1    2
+36   2    1
+###-------------------------------------
+page not found in TBL search PT 
+copy page 25 from vitual to physical memory in 3
+update pt, row 25, validation is true
+update pt, row 25, frame is 3
+modify bits is: 1
+update tlb: replace in (25,3)
+-------------------------------------
+# i = 5
+# page = 22
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    2
+25   3    1
+36   2    1
+###-------------------------------------
+page found in TBL is in frame 0
+modify bits is: 2
+data is  modified.
+-------------------------------------
+# i = 6
+# page = 44
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+22   0    2
+25   3    1
+36   2    1
+###-------------------------------------
+page not found in TBL search PT 
+page is in physical mem
+modify bits is: 3
+update tlb: replace in (44,1)
+data is  modified.
+-------------------------------------
+# i = 7
+# page = 44
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+44   1    2
+25   3    1
+36   2    1
+###-------------------------------------
+page found in TBL is in frame 1
+modify bits is: 3
+-------------------------------------
+# i = 8
+# page = 36
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+44   1    2
+25   3    1
+36   2    2
+###-------------------------------------
+page found in TBL is in frame 2
+modify bits is: 2
+data is  modified.
+-------------------------------------
+# i = 9
+# page = 25
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+44   1    2
+25   3    2
+36   2    2
+###-------------------------------------
+page found in TBL is in frame 3
+modify bits is: 1
+-------------------------------------
+# i = 10
+# page = 2
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+44   1    2
+25   3    2
+36   2    2
+###-------------------------------------
+page not found in TBL search PT 
+free frame not found, wait instruction,use OPT algorithm
+condidate frame swap out is: 0
+copy frame in logical mem becuse it is modified
+update pt, row 22, validation is false
+swap in requested page : 2
+update pt, row 2, validation is true
+update pt, row 2, frame is 0
+update tlb: replace in (2,0)
+restart instruction
+-------------------------------------
+# i = 10
+# page = 2
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+2   0    1
+25   3    2
+36   2    2
+###-------------------------------------
+page found in TBL is in frame 0
+modify bits is: 2
+data is  modified.
+-------------------------------------
+# i = 11
+# page = 55
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+2   0    1
+25   3    2
+36   2    2
+###-------------------------------------
+page not found in TBL search PT 
+free frame not found, wait instruction,use OPT algorithm
+condidate frame swap out is: 0
+copy frame in logical mem becuse it is modified
+update pt, row 2, validation is false
+update TLB, row 0, become free
+swap in requested page : 55
+update pt, row 55, validation is true
+update pt, row 55, frame is 0
+update tlb: put in (55,0)
+restart instruction
+-------------------------------------
+# i = 11
+# page = 55
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+55   0    1
+25   3    2
+36   2    2
+###-------------------------------------
+page found in TBL is in frame 0
+modify bits is: 2
+data is  modified.
+-------------------------------------
+# i = 12
+# page = 25
+CORRECT: page address is valid
+CORRECT: offset is valid
+###-------------------------------------
+55   0    1
+25   3    3
+36   2    2
+###-------------------------------------
+page found in TBL is in frame 3
+modify bits is: 3
+data is  modified.
+-------------------------------------
